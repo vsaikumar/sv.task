@@ -9,6 +9,11 @@ body{color:black;}
 </head>
 <body>
 
+
+  <div id='header'>
+<h1 style='font-size:2em;color:#00bfff'> Buy Me </h1>
+</div>
+
 <?php
 error_reporting(0);
 $ch=curl_init();
@@ -18,17 +23,6 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     ));
 	$se=$_POST['search_keywords'];
 	
-?>
-  <div id='header'>
-<h1 style='font-size:2em;color:#00bfff'> Buy Me </h1>
-</div>
-
-<?php
-	//echo "<div id='topbanner'><h2 class='text-success'><a href='index.php'>Million Store - </a>
-	//<span style='float:right;font-size:1em;'>
-	
-	//Searching for '".$se."'</span></h2></div><hr width='50%;text-align:center;'>";
-
 
 	$see=str_replace(' ', '+', $se);
 curl_setopt($ch, CURLOPT_URL,"https://affiliate-api.flipkart.net/affiliate/search/json?query=$see&resultCount=5");
