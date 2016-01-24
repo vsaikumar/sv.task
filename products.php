@@ -101,50 +101,7 @@ $query = $se;
 $safequery = urlencode($query);  
 $i = '0';  
 
-// Create a PHP array of the item filters you want to use in your request
-$filterarray =
-  array(
-    array(
-    'name' => 'MaxPrice',
-    'value' => '1000',
-    'paramName' => 'Currency',
-    'paramValue' => 'USD'),
-    array(
-    'name' => 'FreeShippingOnly',
-    'value' => 'true',
-    'paramName' => '',
-    'paramValue' => ''),
-    array(
-    'name' => 'ListingType',
-    'value' => array('FixedPrice'),
-    'paramName' => '',
-    'paramValue' => ''),
-  );
-function buildURLArray ($filterarray) {
-  global $urlfilter;
-  global $i;
-  // Iterate through each filter in the array
-  foreach($filterarray as $itemfilter) {
-    // Iterate through each key in the filter
-    foreach ($itemfilter as $key =>$value) {
-      if(is_array($value)) {
-        foreach($value as $j => $content) { // Index the key for each value
-          $urlfilter .= "&itemFilter($i).$key($j)=$content";
-        }
-      }
-      else {
-        if($value != "") {
-          $urlfilter .= "&itemFilter($i).$key=$value";
-        }
-      }
-    }
-    $i++;
-  }
-  return "$urlfilter";
-} // End of buildURLArray function
 
-// Build the indexed item filter URL snippet
-buildURLArray($filterarray);
 $apicall = "$endpoint?";
 $apicall .= "OPERATION-NAME=findItemsByKeywords";
 $apicall .= "&SERVICE-VERSION=$version";
